@@ -47,6 +47,7 @@ where rn = 1
 -- dbt build --select <model_name> --vars '{'is_test_run': 'false'}'
 {% if var('is_test_run', default=true) %}
 
-  limit 100
+  and rand() < 0.01
+  LIMIT 50000
 
 {% endif %}

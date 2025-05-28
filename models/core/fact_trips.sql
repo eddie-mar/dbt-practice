@@ -8,11 +8,13 @@ with green_tripdata as (
     SELECT *,
         'Green' as service_type
     FROM {{ ref("stg_green_tripdata") }}
+    where extract(year from pickup_datetime) in (2019, 2020)
 ),
 yellow_tripdata as (
     SELECT *,
         'Yellow' as service_type
     FROM {{ ref("stg_yellow_tripdata") }}
+    where extract(year from pickup_datetime) in (2019, 2020)
 ),
 trips_unioned as (
     SELECT * FROM green_tripdata
